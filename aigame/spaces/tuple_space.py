@@ -1,6 +1,6 @@
-from gym import Space
+import aigame
 
-class Tuple(Space):
+class Tuple(aigame.Space):
     """
     A tuple (i.e., product) of simpler spaces
 

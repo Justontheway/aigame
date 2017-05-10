@@ -1,8 +1,8 @@
-import gym
-from gym.spaces import prng
+import aigame
+from aigame.spaces import prng
 import numpy as np
 
-class MultiBinary(gym.Space):
+class MultiBinary(aigame.Space):
     def __init__(self, n):
         self.n = n
     def sample(self):

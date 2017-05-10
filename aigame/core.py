@@ -4,9 +4,6 @@ logger = logging.getLogger(__name__)
 import numpy as np
 
 from aigame import error
-from aigame.utils import closer
-
-env_closer = closer.Closer()
 
 # Env-related abstractions
 
@@ -49,7 +46,6 @@ class Env(object):
         # We use __new__ since we want the env author to be able to
         # override __init__ without remembering to call super.
         env = super(Env, cls).__new__(cls)
-        env._env_closer_id = env_closer.register(env)
         env._closed = False
 
         # Will be automatically set when creating an environment via 'make'
@@ -163,7 +159,6 @@ class Env(object):
             self.render(close=True)
 
         self._close()
-        env_closer.unregister(self._env_closer_id)
         # If an error occurs before this line, it's possible to
         # end up with double close.
         self._closed = True
@@ -230,7 +225,7 @@ class Agent(object):
     """Defines the AI-Aagent in the env.
     """
 
-    def __init__(self, action_space, observation_space = {}):
+    def __init__(self, action_space=None, observation_space=None):
         self.action_space = action_space
         self.observation_space = observation_space
 

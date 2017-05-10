@@ -1,9 +1,9 @@
 import numpy as np
 
-import gym, time
-from gym.spaces import prng
+import aigame, time
+from aigame.spaces import prng
 
-class Discrete(gym.Space):
+class Discrete(aigame.Space):
     """
     {0,1,...,n-1}
 

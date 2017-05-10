@@ -1,9 +1,9 @@
 import numpy as np
 
-import gym
-from gym.spaces import prng
+import aigame
+from aigame.spaces import prng
 
-class Box(gym.Space):
+class Box(aigame.Space):
     """
     A box in R^n.
     I.e., each coordinate is bounded.
