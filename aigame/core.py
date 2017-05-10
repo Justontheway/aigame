@@ -1,4 +1,5 @@
 import logging
+
 logger = logging.getLogger(__name__)
 
 import numpy as np
@@ -221,6 +222,6 @@ class Agent(object):
         Return next action based on the last observation and
         reward and status.
         """
-        self._act(observation, reward, done)
+        return self._act(observation, reward, done)
 
     def _act(self, observation, reward, done):raise NotImplementedError

@@ -57,9 +57,9 @@ class SnakeOnlineOnlyDirEnv(aigame.Env):
 
     def _step(self, action):
         direction, accelerate, shield = action
-        angle = 2 * np.pi * angle / 120
-        dx = self.radius * np.cos(angle)
-        dy = self.radius * np.sin(angle)
+        angle = 2 * np.pi * direction / 120
+        dx = np.int(np.round(self.radius * np.cos(angle)))
+        dy = np.int(np.round(self.radius * np.sin(angle)))
         self._ctl_dir(dx, dy)
         if shield == 1:
             self._shield()
@@ -82,7 +82,7 @@ class SnakeOnlineOnlyDirEnv(aigame.Env):
         """
         # Step1. take a snapeshot.
         # Step2. analyze scores, maybe also who kill who, left-top map(boss pos), score list.
-        obs = {"status":self.IN_GAME, "screen":None,
+        obs = {"status":self.RE_GAME, "screen":None,
                "shield":True, "score":10, "team":10, "rank":3,
                "bosslist":[], "teamlist":[]}
         if self._cur_obs:
@@ -125,6 +125,7 @@ class SnakeOnlineOnlyDirEnv(aigame.Env):
             logger.info("Bring window %s to top."%(windowTitle))
             gui.BringWindowToTop(self._snakeWindow)
             gui.SetForegroundWindow(self._snakeWindow)
+            time.sleep(2)
         else:
             raise EnvironmentError("Game Window Not Found.")
 
