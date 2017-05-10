@@ -6,24 +6,26 @@ import aigame
 import random
 from aigame import spaces
 
-class SimpleSnakeAgent(aigame.Env):
-    def __init__(self):
-        self.action_space = spaces.Discrete(2)
-        self.observation_space = spaces.Discrete(1)
-        self._reset()
+class SimpleSnakeAgent(aigame.Agent):
+    def __init__(self, env):
+        self.action_space = env.action_space
+        self.observation_space = env.observation_space
 
-    def _step(self, action):
-        assert self.action_space.contains(action)
-        if action:
-                reward = 1
-        else:
-                reward = 0
+    def _act(self, observation, reward, done):
+        """
+        Return next action based on the last observation and
+        reward and status.
+        """
+        raise self.action_space.sample()
 
-        done = True
-        return self._get_obs(), reward, done, {}
+class RandomSnakeAgent(aigame.Agent):
+    def __init__(self, env):
+        self.action_space = env.action_space
+        self.observation_space = env.observation_space
 
-    def _get_obs(self):
-        return 0
-
-    def _reset(self):
-        return self._get_obs()
+    def _act(self, observation, reward, done):
+        """
+        Return next action based on the last observation and
+        reward and status.
+        """
+        raise self.action_space.sample()

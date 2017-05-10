@@ -180,23 +180,11 @@ class Env(object):
         """
         return self._seed(seed)
 
-    @property
-    def unwrapped(self):
-        """Completely unwrap this env.
-
-        Returns:
-            gym.Env: The base non-wrapped gym.Env instance
-        """
-        return self
-
     def __del__(self):
         self.close()
 
     def __str__(self):
-        if self.spec is not None:
-            return '<{}<{}>>'.format(type(self).__name__, self.spec.id)
-        else:
-            return '<{} instance>'.format(type(self).__name__)
+        return '<{} instance>'.format(type(self).__name__)
 
 # Space-related abstractions
 
@@ -225,13 +213,14 @@ class Agent(object):
     """Defines the AI-Aagent in the env.
     """
 
-    def __init__(self, action_space=None, observation_space=None):
-        self.action_space = action_space
-        self.observation_space = observation_space
+    action_space = None
+    observation_space = None
 
     def act(self, observation, reward, done):
         """
         Return next action based on the last observation and
         reward and status.
         """
-        return self.action_space.sample()
+        self._act(observation, reward, done)
+
+    def _act(self, observation, reward, done):raise NotImplementedError
