@@ -1,3 +1,11 @@
 # python
-.pyc
+*.pyc
 
+# eclipse
+.project
+.pydevproject
+
+# build
+build
+dist
+*.egg-info
