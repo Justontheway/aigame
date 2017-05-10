@@ -13,9 +13,9 @@ algorithm you are writing). The agent sends `actions` to the
 environment, and the environment replies with `observations` and
 `rewards` (that is, a score).
 
-The core `gym` interface is `Env <https://github.com/openai/gym/blob/master/gym/core.py>`_, which is
-the unified environment interface. There is no interface for agents;
-that part is left to you. The following are the ``Env`` methods you
+The core `aigame` interface is `Env <https://github.com/Justontheway/aigame/blob/master/aigame/core.py>`_, which is
+the unified environment interface and agent interface.
+The following are the ``Env`` methods you
 should know:
 
 - `reset(self)`: Reset the environment's state. Returns `observation`.
