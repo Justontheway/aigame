@@ -1,0 +1,1 @@
+from aigame.envs.snake_online.snake_online_only_dir import SnakeOnlineOnlyDirEnv
