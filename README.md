@@ -24,4 +24,15 @@ should know:
 
 Installation
 ============
+On Win7|10
+- download ActivePython : http://downloads.activestate.com/ActivePython/releases/2.7.13.2714/ActivePython-2.7.13.2714-win64-x64-402182.exe
+- download autopy : https://pypi.python.org/packages/7f/35/a7f1c8c2f2d380c9df73efa56043bf2296e66273074bae37b8625db7b608/autopy-0.51.win-amd64-py2.7.exe#md5=f67dee6f0a30673a2b267dec0431395e
+- download aigame : git clone https://github.com/Justontheway/aigame.git
+- cd aigame
+- python setup.py install
+- cd examples
+- python random_agent.py
 
+Note
+====
+1. 因为运行时需要操作window窗口,所以运行脚本的时候要用管理员身份打开cmd
