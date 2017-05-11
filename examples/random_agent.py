@@ -8,7 +8,7 @@ from aigame.envs import snake_online
 logger = aigame.logger
 
 if __name__ == '__main__':
-    env = snake_online.SnakeOnlineOnlyDirEnv()
+    env = snake_online.SnakeOnlineEnv()
     agent = snake_simple.RandomSnakeAgent(env)
 
     episode_count = 1

@@ -13,7 +13,7 @@ from aigame import spaces
 
 logger = logging.getLogger(__name__)
 
-class SnakeOnlineOnlyDirEnv(aigame.Env):
+class SnakeOnlineEnv(aigame.Env):
     """
     def __init__(self)
     def _step(self, action)
@@ -130,11 +130,26 @@ class SnakeOnlineOnlyDirEnv(aigame.Env):
             raise EnvironmentError("Game Window Not Found.")
 
     # @TODO auto-detect these information.
+    # left-top-right-down
+    # 250 20 1327 711
+    # 355 565 920 466 1224 569
+    # 105, 545
+    # 670, 446
+    # 974, 549
+    #----------------------------
+    # 920 466
+    # 816 468
+    # 1114 565
+    # 300 100
     def _env_analyze(self):
-        self.dirCenter = (251, 565)
-        self.spdCenter = (1124, 567)
-        self.rstCenter = (816, 468)
-        self.sldCenter = (1114, 565)
+        self._snakeWindowRect = gui.GetWindowRect(self._snakeWindow)
+        ltx = self._snakeWindowRect[0]
+        lty = self._snakeWindowRect[1]
+        pos_calc = lambda x,y:(ltx + x, lty + y)
+        self.dirCenter = pos_calc(105, 545)
+        self.spdCenter = pos_calc(974, 549)
+        self.rstCenter = pos_calc(670, 446)
+        self.sldCenter = pos_calc(970, 546)
         self.dirX = self.dirCenter[0]
         self.dirY = self.dirCenter[1]
         self.spdX = self.spdCenter[0]
@@ -144,7 +159,6 @@ class SnakeOnlineOnlyDirEnv(aigame.Env):
         self.sldX = self.sldCenter[0]
         self.sldY = self.sldCenter[1]
         self.radius = 50
-        self._snakeWindowRect = gui.GetWindowRect(self._snakeWindow)
 
     def _analysis_status(self, obs):
         return obs.get("status", self.IN_GAME)
