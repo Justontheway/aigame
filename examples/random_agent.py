@@ -18,8 +18,8 @@ if __name__ == '__main__':
     for i in range(episode_count):
         loop = 0
         ob = env.reset()
-        print ob
-        print type(ob)
+        print(ob)
+        print(type(ob))
         while True:
             action = agent.act(ob, reward, done)
             ob, reward, done, _ = env.step(action)

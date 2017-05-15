@@ -159,7 +159,7 @@ class SnakeOnlineEnv(aigame.Env):
         self.sldX = self.sldCenter[0]
         self.sldY = self.sldCenter[1]
         self.radius = 50
-        logger.info(ltx, lty)
+        logger.info("get left-top (%d, %d)"%(ltx, lty))
 
     def _analysis_status(self, obs):
         return obs.get("status", self.IN_GAME)
@@ -211,7 +211,7 @@ class SnakeOnlineEnv(aigame.Env):
         self._left_click(self.spdX, self.spdY)        
 
     def _left_click(self, x, y):
-        logger.info("left click pos(%d, %d)"%(x, y))
+        logger.info("left click (%d, %d)"%(x, y))
         autopy.mouse.toggle(False, autopy.mouse.LEFT_BUTTON)
         autopy.mouse.move(x, y)
         autopy.mouse.click(autopy.mouse.LEFT_BUTTON)
