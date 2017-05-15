@@ -5,7 +5,7 @@ Infinite-mode.
 
 import logging
 import win32gui as gui
-import autopy3 as autopy
+import autopy
 import time
 import numpy as np
 import aigame
