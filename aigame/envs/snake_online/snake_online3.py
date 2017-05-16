@@ -145,11 +145,14 @@ class SnakeOnlineEnv(aigame.Env):
         self._snakeWindowRect = gui.GetWindowRect(self._snakeWindow)
         ltx = self._snakeWindowRect[0]
         lty = self._snakeWindowRect[1]
-        pos_calc = lambda x,y:(ltx + x, lty + y)
+        rbx = self._snakeWindowRect[2]
+        rby = self._snakeWindowRect[3]
+        pos_calc = lambda x,y:(int(ltx + x), int(lty + y))
         self.dirCenter = pos_calc(105, 545)
         self.spdCenter = pos_calc(974, 549)
         self.rstCenter = pos_calc(670, 446)
         self.sldCenter = pos_calc(970, 546)
+        self.snakeHead = pos_calc((rbx+1-ltx)/2, (rby+1-lty)/2)
         self.dirX = self.dirCenter[0]
         self.dirY = self.dirCenter[1]
         self.spdX = self.spdCenter[0]
@@ -158,6 +161,8 @@ class SnakeOnlineEnv(aigame.Env):
         self.rstY = self.rstCenter[1]
         self.sldX = self.sldCenter[0]
         self.sldY = self.sldCenter[1]
+        self.hedX = self.snakeHead[0]
+        self.hedY = self.snakeHead[1]
         self.radius = 50
         logger.info("get left-top (%d, %d)"%(ltx, lty))
 
@@ -215,3 +220,5 @@ class SnakeOnlineEnv(aigame.Env):
         autopy.mouse.toggle(False, autopy.mouse.LEFT_BUTTON)
         autopy.mouse.move(x, y)
         autopy.mouse.click(autopy.mouse.LEFT_BUTTON)
+        autopy.mouse.move(self.hedX, self.hedY)
+        time.sleep(0.1)
